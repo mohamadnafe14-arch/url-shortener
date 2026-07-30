@@ -13,7 +13,7 @@
                 <h1 class="text-center mb-4">
                     URL Shortener
                 </h1>
-                <form action="/" method="post">
+                <form action="/shortUrl" method="post">
                     <div class="mb-3">
                         <label for="url" class="form-label">
                             URL
@@ -21,7 +21,7 @@
                         <input
                             type="text"
                             id="url"
-                            name="url"
+                            name="originalUrl"
                             class="form-control"
                             placeholder="https://example.com">
                     </div>
@@ -46,23 +46,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <a href="#">
-                                        http://localhost:8000/5454
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#">
-                                    123456
-                                    </a>
-                                </td>
-                                <td>
-                                    <span class="badge bg-success">
-                                        0
-                                    </span>
-                                </td>
-                            </tr>
+                            <% allUrls.forEach((url) => { %>
+                                <tr>
+                                    <td><a href="<%= url.originalUrl %>" target="_blank"><%= url.originalUrl %></a></td>
+                                    <td><a href="<%= url.shortUrl %>" target="_blank"><%= url.shortUrl %></a></td>
+                                    <td><%= url.clicks %></td>
+                                </tr>
+                            <% }) %>
                         </tbody>
                     </table>
                 </div>
